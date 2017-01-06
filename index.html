@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: Arial,'Times New Roman','Microsoft YaHei',SimHei;
+            font-size: 14px;
+        }
+        html,body{
+            overflow: hidden;
+        }
+        #head{
+            /*background: #ef3b31;*/
+        }
+        #head #moveHead{
+            width: 182px;
+            height: 62px;
+            background: #ef3b31;
+            position: absolute;
+            left: 0;
+            top:0;
+        }
+        #moveHead div{
+            background: #333333;
+            width: 47px;
+            height: 50px;
+            position: absolute;
+            right: -35px;
+            top: 16px;
+            z-index: 1;
+        }
+        #moveHead div i{
+            width: 0;
+            height: 50px;
+            background: #333333;
+            display: block;
+            position: absolute;
+            left: 47px;
+            top: 0;
+        }
+        #right-arrow{
+             width: 17px;
+             height: 16px;
+             position: absolute;
+             left: 160px;
+             top:33px;
+             cursor: pointer;
+             background: url("img/common_z.png") no-repeat -326px -180px;
+             z-index: 150;
+             display: none;
+        }
+        #moveHead span{
+            width: 36px;
+            height: 62px;
+            position: absolute;
+            top:4px;
+            right: -21px;
+            background:url("img/common_z.png")no-repeat -84px -78px;
+            z-index: 38;
+        }
+        #moveHead span b{
+            width: 11px;
+            height: 5px;
+            background: #ef3b31;
+            position: absolute;
+            top: -4px;
+            left: 14px;
+        }
+        #moveHead .logo-img{
+            width:140px;
+            height: 40px;
+            position: absolute;
+            background:#ef3b31 url("img/common_z.png") no-repeat 0 -202px ;
+            left:18px;
+            bottom:6px;
+            z-index: 120;
+        }
+        #head .headCenter{
+            /*width: 1217px;*/
+            height: 50px;
+            background:  #ef3b31;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+        }
+        #head .centerImg span{
+            display: block;
+            position: relative;
+            width: 158px;
+            height: 16px;
+            background: url("img/common_z.png") no-repeat -156px -374px;
+            margin: 0 auto;
+            z-index: 40;
+        }
+        #head .centerImg .click-area{
+            width: 121px;
+            height: 64px;
+            background: url("img/common_z.png")no-repeat -11px 0;
+            margin: 0 auto;
+           position: absolute;
+            left: 45.67%;
+            top: 0;
+            z-index: 41;
+            cursor: pointer;
+        }
+        .headCenter #leftLittle{
+            position: absolute;
+            top:0;
+            right: 55.6%;
+            /*overflow: hidden;*/
+            margin-right: 0px;
+        }
+         #headSpan{
+            display: inline-block;
+            width:19px;
+            height: 50px;
+            background: url("img/common_z.png") no-repeat -60px -90px;
+            position: absolute;
+            right: -19px;
+            top:0px;
+            z-index: 92;
+        }
+        .headCenter  li{
+            height: 50px;
+            float: left;
+            line-height: 50px;
+            padding: 0 11px;
+            font-size: 15px;
+            /*overflow: hidden;*/
+            position: relative;
+            z-index: 100;
+        }
+        .headCenter a{
+            height: 0;
+            z-index: 100;
+            text-decoration: none;
+            color: #ffffff;
+            display: block;
+        }
+        .headCenter #centerLittle{
+            position: absolute;
+            left: 56%;
+            top:0;
+        }
+        .headCenter #rightLittle{
+            position: absolute;
+            left: 100%;
+            top:0;
+            display: none;
+        }
+        #head .headRightBox{
+            position: absolute;
+            right: 0;
+            top:16px;
+            height: 50px;
+            width: 215px;
+            background: #ef3b31;
+            float: right;
+            margin-left: 24px;
+        }
+        #head .headRightBox #left-arrow{
+            width: 17px;
+            height: 16px;
+            position: absolute;
+            top: 18px;
+            cursor: pointer;
+            background:url("img/common_z.png") no-repeat -203px -121px;
+            display: block;
+        }
+        #head .headRightBox i{
+            display: block;
+            width: 20px;
+            height: 20px;
+            margin-left: 50px;
+            margin-top: 17px;
+            cursor: pointer;
+            background: url("img/common_z.png") no-repeat -426px -341px;
+        }
+        #head .headRightBox .base-person{
+            width: 39px;
+            height: 38px;
+            background: url("img/common_z.png") no-repeat 0 -290px;
+            float: left;
+            margin-top: -31px;
+            margin-left: 90px;
+        }
+        #head .headRightBox .headWhiteBox span{
+            width: 60px;
+            height: 50px;
+            background: url("img/common_z.png") no-repeat -163px -66px;
+            display: block;
+            float: right;
+            margin-top:-37px;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+        #head .show1{
+            width: 100%;
+            height: 44px;
+            background: #333333;
+            position: absolute;
+            top:66px;
+            left:0;
+        }
+        #head .show1>ul{
+            width: 1080px;
+            margin: 0 auto;
+        }
+        #head .show1 ul li{
+            height: 44px;
+            /*width: 62px;*/
+            line-height: 44px;
+            float:left;
+            padding: 0 11px;
+            margin: 0 auto;
+        }
+        #head .show1 ul li a{
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 12px;
+        }
+        #head .hide{
+            display: none;
+        }
+        #head .headWhiteLittleBox{
+            width: 1364px;
+            height: 0;
+            line-height: 44px;
+            background: #ffffff;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            color: #37393d;
+            font-size: 12px;
+            overflow: hidden;
+        }
+        #head .headWhiteLittleBox .widthP1{
+            margin-right: 130px;
+        }
+        #head .headWhiteLittleBox a{
+            float: right;
+            margin-left: 32px;
+            text-decoration: none;
+            color:#37393d;
+        }
+        #head .headWhiteLittleBox a:hover{
+            color: #ef3b31;
+        }
+        #head .headWhiteBox .bigBox:hover .headWhiteLittleBox{
+            height: 44px;
+
+        }
+        .content{
+            position: absolute;
+            left: 0;
+            top:0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: -1;
+        }
+        .content>img{
+            width: 1360px;
+            height: 768px;
+        }
+        .centBox{
+            width: 920px;
+            height: 278px;
+            position: absolute;
+            top: 214px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        .centBox>p a{
+            width: 904px;
+            height: 54px;
+            text-decoration: none;
+            line-height: 54px;
+            overflow: hidden;
+            color: #ffffff;
+            font-size: 26px;
+            padding-left:16px;
+            background: rgba(0,0,0,.4);
+            display: inline-block;
+        }
+        .centBox .contOne{
+            width: 100%;
+            height: 220px;
+            background: rgba(0,0,0,.5);
+            position: relative;
+        }
+        .centBox .contTwo{
+            width: 548px;
+            height: 200px;
+
+            overflow: hidden;
+            float: left;
+        }
+        .centBox .contTwo>p{
+            width: 100%;
+            height: 45px;
+            color: #ffffff;
+            font-size: 16px;
+            line-height: 23px;
+            padding-left: 6px;
+            border-left: 3px solid #ffa800;
+        }
+        .centBox .contTwo>p>a{
+            text-decoration: none;
+            color: #ffffff;
+            background: rgba(0,0,0,0);
+        }
+        .centBox .contTwo p span{
+            font-size: 16px;
+            color: #ffa800;
+            font-weight: bolder;
+        }
+        .centBox .contTwo>b{
+            width: 490px;
+            margin-left: 5px;
+            margin-top: 4px;
+            display: block;
+            border-top:1px solid #62656a;
+            border-bottom: 1px solid #96999e;
+        }
+        .centBox .contTwo>span{
+            font-size: 16px;
+            display: block;
+            color: #ffa800;
+            font-weight: bolder;
+            margin-top: 7px;
+        }
+        .centBox .contTwo>ul {
+            width: 100%;
+            height: 120px;
+
+        }
+        .centBox .contTwo>ul>li{
+            width: 177px;
+            height: 120px;
+            background: #333333;
+            color: #ffffff;
+            overflow: hidden;
+            float: left;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        .centBox .contTwo>ul>li img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #88939d;
+        }
+        .centBox .contTwo>ul>li>p{
+            font-size: 12px;
+            width: 100%;
+            height: 20px;
+            line-height: 20px;
+            padding-left:12px;
+            background: #ef3b31;
+        }
+        .centBox .contTwo>ul>li> ul{
+            width: 160px;
+            height: 75px;
+            margin: 8px auto;
+            /*background: blue;*/
+        }
+        .centBox .contTwo>ul>li> ul li{
+            width: 50px;
+            height: 100%;
+            text-align: center;
+            float: left;
+        }
+        .centBox .contTwo>ul>li> ul .oLi1{
+            float: left;
+        }
+        .centBox .contTwo>ul>li> ul .oLi2{
+            margin-left: 5px;
+        }
+        .centBox .contTwo>ul>li> ul .oLi2 span{
+            display: block;
+            margin-top: 20px;
+        }
+        .centBox .contTwo>ul>li> ul .oLi3 {
+            float: right;
+        }
+        .centBox .contTwo>ul .liS1 div{
+            width: 160px;
+            height: 75px;
+            margin: 8px auto;
+
+        }
+        .centBox .contTwo>ul .liS1 div img{
+            float: left;
+        }
+        .centBox .contTwo>ul .liS1 div span{
+            width: 100px;
+            float: left;
+            font-size: 12px;
+            margin-left: 9px;
+            margin-top: 11px;
+        }
+        .centBox .contThree{
+            width: 256px;
+            height: 200px;
+            float:left;
+        }
+        .centBox .contThree .oP1{
+            width: 100%;
+            height: 29px;
+            font-size: 18px;
+            color: #ffa800;
+            font-weight: bolder;
+        }
+        .centBox .contThree .oP2{
+            width: 238px;
+            height: 171px;
+            background: #ffffff;
+            padding: 0 9px;
+        }
+        .centBox .contThree .oP2 a{
+            font-size: 12px;
+            line-height: 22px;
+            color: #666666;
+            text-decoration: none;
+
+        }
+        .centBox .contThree .oP2 a:hover{
+            color: red;
+        }
+        .centBox .contThree .oP2 .oneA{
+            display: inline-block;
+            line-height: 24px;
+            color: #333333;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 6px;
+        }
+        .centBox .contThree .oP2 span{
+            color: #ff0000;
+            font-size: 12px;
+        }
+        .contOne .contA1{
+            width: 28px;
+            height: 84px;
+            display: inline-block;
+            background:url("./img/content.png") no-repeat -160px 0px;
+            position: absolute;
+            top:70px;
+            left: 15px;
+        }
+        .contOne .contA2{
+            width: 28px;
+            height: 84px;
+            display: inline-block;
+            background: url("./img/content.png") no-repeat -225px 0px;
+            position: absolute;
+            top:70px;
+            right: 15px;
+        }
+        .contOne .contA1:hover{
+            background: url("./img/content.png") no-repeat -126px 0px;
+        }
+        .contOne .contA2:hover{
+            background: url("./img/content.png") no-repeat -192px 0px;
+        }
+        .contOne .contFor{
+            width: 30px;
+            height: 220px;
+            /*background: red;*/
+            position: absolute;
+            top: 0;
+            right: -30px;
+            z-index: 10;
+        }
+        .contOne .contFor>span{
+            display: block;
+            width: 30px;
+            height: 78px;
+            background: url("./img/content.png") no-repeat 0 -147px;
+        }
+        .contOne .contFor>a{
+            display: block;
+            width: 30px;
+            height: 140px;
+            background: url("./img/contR.png") no-repeat center;
+            margin-top: 2px;
+        }
+        .contOne .contFor>i{
+            width: 24px;
+            height: 15px;
+            display: inline-block;
+            background: url("./img/content.png") no-repeat -226px -118px;
+            position: absolute;
+            top: 96px;
+            left: 24px;
+        }
+        .fixed{
+            width: 42px;
+            height: 480px;
+            position: fixed;
+            top:110px;
+            right: 16px;
+        }
+        .fixed ul{
+            width: 100%;
+            height: 100%;
+        }
+        .fixed ul li{
+            width: 42px;
+            height: 38px;
+            margin-bottom: 2px;
+            position: relative;
+            background: rgba(0,0,0,.4);
+        }
+        .fixed ul li>span{
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        .fixed ul li .listA1,a .listB1{
+            width: 14px;
+            height: 14px;
+            background: url("./img/content.png") no-repeat -269px -77px;
+        }
+        .fixed ul li .listA2,a .listB2{
+            width: 18px;
+            height: 26px;
+            background: url("./img/content.png") no-repeat -267px -143px;
+        }
+        .fixed ul li .listA3,a .listB3{
+            width: 22px;
+            height: 17px;
+            background: url("./img/content.png") no-repeat -263px -110px;
+        }
+        .fixed ul li .listA4,a .listB4{
+            width: 16px;
+            height: 16px;
+            background: url("./img/content.png") no-repeat -268px -182px;
+        }
+        .fixed ul li .listA5,a .listB5{
+            width: 16px;
+            height: 21px;
+            background: url("./img/content.png") no-repeat -146px -152px;
+        }
+        .fixed ul li .listA6,a .listB6{
+            width: 25px;
+            height: 30px;
+            background: url("./img/content.png") no-repeat -264px 0px;
+        }
+        .fixed ul li .listA7,a .listB7{
+            width: 18px;
+            height: 18px;
+            background: url("./img/content.png") no-repeat -5px -237px;
+        }
+        .fixed ul li .listA8,a .listB8{
+            width: 20px;
+            height: 20px;
+            background: url("./img/content.png") no-repeat -45px -234px;
+        }
+        .fixed ul li .listA9,a .listB9{
+            width: 15px;
+            height: 20px;
+            background: url("./img/content.png") no-repeat -85px -235px;
+        }
+        .fixed ul li .listA10,a .listB10{
+            width: 20px;
+            height: 12px;
+            background: url("./img/content.png") no-repeat -226px -190px;
+        }
+        .fixed ul li .listA11,a .listB11{
+            width: 20px;
+            height: 20px;
+            background: url("./img/content.png") no-repeat -122px -234px;
+        }
+        .fixed ul li .listA12{
+            cursor: pointer;
+            width: 26px;
+            height: 26px;
+            background: url("./img/content.png") no-repeat -183px -184px;
+        }
+        .fixed ul li a{
+            display: inline-block;
+            width: 112px;
+            height: 38px;
+            background: #ef3b31;
+            position: absolute;
+            right: 0;
+            top: 0;
+            list-style: none;
+            line-height: 38px;
+            display: none;
+        }
+        .fixed ul li a span{
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            left: 5px;
+            bottom: 0;
+            margin: auto 0;
+        }
+        .fixed ul li a b{
+            display: inline-block;
+            margin-left: 32px;
+            color: #ffffff;
+            font-size: 12px;
+        }
+        .fixed ul li:hover a{
+            display: block;
+        }
+        #listAS{
+            background: #ef3b31;
+        }
+        .contBox{
+            width: 804px;
+            height: 200px;
+            margin-left: 58px;
+            overflow: hidden;
+            position: relative;
+        }
+        .contBox .centBox_1{
+            width: 200%;
+            height: 200px;
+            position: absolute;
+            top: 0;
+        }
+        .contBox .centBox_1 .oUlOne{
+            width: 804px;
+            height: 200px;
+            float: left;
+        }
+        .contBox .centBox_1 .oUlOne li {
+            width: 266px;
+            height: 200px;
+            float: left;
+        }
+        .contBox .centBox_1 .oUlOne li p{
+            width: 100%;
+            height: 28px;
+            color: #ffa800;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .contBox .centBox_1 .oUlOne li .contFive{
+            width: 256px;
+            height: 162px;
+            padding: 5px;
+            background: #ffffff;
+        }
+        .contBox .centBox_1 .oUlOne li .contFive .P1{
+            /*border: none;*/
+            width: 107px;
+            height: 162px;
+        }
+        .contBox .centBox_1 .oUlOne li .contFive .A1{
+            display: inline-block;
+            width: 142px;
+            height: 79px;
+        }
+        .contBox .centBox_1 .oUlOne li .contFive .A1>img,.A2>img{
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+        .contBox .centBox_1 .oUlOne li .contFive .contSix .A2{
+            display: inline-block;
+            width: 142px;
+            height: 79px;
+            bottom: 0;
+            margin-top: 1px;
+        }
+        .contBox .centBox_1 .oUlOne li .contFive .contSix{
+            width: 142px;
+            height: 162px;
+            float: right;
+        }
+        .contLi2{
+            margin: 0 3px;
+        }
+        .fixed2{
+            width: 30px;
+            height: 78px;
+            position: fixed;
+            bottom: 60px;
+            left: 0;
+            display: none;
+        }
+        .fixed2 span{
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            background: url("./img/content.png") no-repeat -70px -147px;
+
+        }
+        .opA{
+            position: absolute;
+            left: 0;
+            bottom:224px;
+        }
+        .fixed3{
+            width: 100%;
+            height: 74px;
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+        }
+        .fixed3 ul {
+            display: inline-block;
+        }
+        .fixed3 ul li {
+            display: inline-block;
+            width: 104px;
+            height: 74px;
+            margin: 1px;
+            cursor: pointer;
+            position: relative;
+        }
+        .fixed3 ul li img{
+            width: 100%;
+            height: 100%;
+            border: 1px solid #6c6c75;
+        }
+        .fixed3_box{
+            text-align: center;
+            float: left;
+            position: absolute;
+            top:0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        .hover{
+            bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="head">
+    <div id="moveHead">
+        <div><i> <em id="headSpan"></em></i></div>
+        <span>
+            <b></b>
+        </span>
+        <a class="logo-img" href="http://www.lesports.com"></a>
+    </div>
+    <div class="centerImg">
+        <span></span>
+        <div class="click-area"></div>
+    </div>
+    <div id="right-arrow"></div>
+    <div class="headCenter" id="headCenter">
+        <ul id="leftLittle">
+            <li><a href="http://www.lesports.com/index.html" >首页</a></li>
+            <li index="0"><a href="http://12.lesports.com/" index="0">中国足球</a></li>
+            <li index="1"><a href="http://csl.lesports.com/" index="1">中超</a></li>
+            <li><a href="http://epl.lesports.com" class="">英超</a></li>
+            <li index="2"><a href="http://global.lesports.com/ " index="2">国际足球</a></li>
+            <li index="3"><a href="http://nba.lesports.com/" index="3">篮球</a></li>
+            <li index="4"><a href="http://others.lesports.com" index="4">综合体育</a></li>
+        </ul>
+        <ul id="centerLittle">
+
+            <li index="5"><a href="http://esports.lesports.com/" index="5">电竞</a></li>
+            <li index="6"><a href=" http://tennis.lesports.com/" index="6">网球</a></li>
+            <li index="7"><a href="http://golf.lesports.com" index="7">高尔夫</a></li>
+            <li index="8"><a href="http://racing.lesports.com" index="8">赛车</a></li>
+            <li index="9"><a href="http://z.lesports.com" index="9">社区</a></li>
+            <li><a href="http://vip.lesports.com/plaza">会员</a></li>
+            <li index="10"><a target="_blank" href="http://www.zhangyu.tv/" index="10">章鱼TV</a></li>
+        </ul>
+        <ul id="rightLittle">
+            <li><a href="javascript:;">游戏</a></li>
+            <li index="11"><a href="javascript:;" index="11">节目</a></li>
+            <li><a href="javascript:;">比赛大厅</a></li>
+            <li><a href="javascript:;">商城</a></li>
+            <li><a href="javascript:;">粤体育</a></li>
+            <li><a href="javascript:;">重庆体育</a></li>
+            <li><a href="javascript:;">浙体育</a></li>
+        </ul>
+    </div>
+    <div class="headRightBox">
+        <div id="left-arrow"></div>
+        <i></i>
+        <div class="base-person"></div>
+        <div class="headWhiteBox">
+            <div class="bigBox">
+                <span></span>
+                <div class="headWhiteLittleBox">
+                    <a href="javascript:;" class="widthP1">乐视网</a>
+                    <a href="javascript:;">乐视商城</a>
+                    <a href="javascript:;">网酒网</a>
+                    <a href="javascript:;">表演</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="show1 hide">
+        <ul>
+            <li><a href="javascript:;">国足</a></li>
+            <li><a href="javascript:;">12强赛程</a></li>
+            <li><a href="javascript:;">12强加分</a></li>
+            <li><a href="javascript:;">十一人</a></li>
+            <li><a href="javascript:;">冲世列将</a></li>
+            <li><a href="javascript:;">女足</a></li>
+            <li><a href="javascript:;">亚冠</a></li>
+            <li><a href="javascript:;">足协杯</a></li>
+            <li><a href="javascript:;">中甲</a></li>
+            <li><a href="javascript:;">J联赛</a></li>
+            <li><a href="javascript:;">K联赛</a></li>
+            <li><a href="javascript:;">澳超</a></li>
+            <li><a href="javascript:;">印超</a></li>
+            <li><a href="javascript:;">大足联赛</a></li>
+            <li><a href="javascript:;">校园足球</a></li>
+            <li><a href="javascript:;">中国青少年锦标赛</a></li>
+        </ul>
+    </div>
+    <div class="show1 hide">
+        <ul>
+            <li><a href="javascript:;">超级比赛日</a></li>
+            <li><a href="javascript:;">超级中情局</a></li>
+            <li><a href="javascript:;">新中超客栈</a></li>
+            <li><a href="javascript:;">集锦</a></li>
+            <li><a href="javascript:;">赛程</a></li>
+            <li><a href="javascript:;">积分</a></li>
+            <li><a href="javascript:;">射手</a></li>
+            <li><a href="javascript:;">竞猜</a></li>
+            <li><a href="javascript:;">主场</a></li>
+            <li><a href="javascript:;">球队</a></li>
+            <li><a href="javascript:;">国安乐视频道</a></li>
+            <li><a href="javascript:;">富力频道</a></li>
+            <li><a href="javascript:;">力帆频道</a></li>
+            <li><a href="javascript:;">绿城频道</a></li>
+            <li><a href="javascript:;">建业频道</a></li>
+            <li><a href="javascript:;">亚冠</a></li>
+        </ul>
+    </div>
+    <div class="show1 hide">
+        <ul>
+            <li><a href="javascript:;">英超</a></li>
+            <li><a href="javascript:;">西甲</a></li>
+            <li><a href="javascript:;">意甲</a></li>
+            <li><a href="javascript:;">德甲</a></li>
+            <li><a href="javascript:;">法甲</a></li>
+            <li><a href="javascript:;">欧冠</a></li>
+            <li><a href="javascript:;">欧联</a></li>
+            <li><a href="javascript:;">2018世预赛</a></li>
+            <li><a href="javascript:;">MLS</a></li>
+            <li><a href="javascript:;">解放者杯</a></li>
+            <li><a href="javascript:;">巴西杯</a></li>
+            <li><a href="javascript:;">南美杯</a></li>
+            <li><a href="javascript:;">超级星战</a></li>
+            <li><a href="javascript:;">足球密</a></li>
+            <li><a href="javascript:;">英超精华</a></li>
+        </ul>
+    </div>
+    <div class="show1 hide">
+        <ul>
+            <li><a href="javascript:;">NBA</a></li>
+            <li><a href="javascript:;">CBA</a></li>
+            <li><a href="javascript:;">星球者联盟</a></li>
+            <li><a href="javascript:;">中国男篮</a></li>
+            <li><a href="javascript:;">CUBA</a></li>
+            <li><a href="javascript:;">欧冠篮球</a></li>
+            <li><a href="javascript:;">NCAA</a></li>
+            <li><a href="javascript:;">男篮亚锦赛</a></li>
+            <li><a href="javascript:;">男篮欧锦赛</a></li>
+            <li><a href="javascript:;">男篮美锦赛</a></li>
+        </ul>
+    </div>
+    <div class="show1 hide">
+        <ul>
+            <li><a href="javascript:;">奥运</a></li>
+            <li><a href="javascript:;">MLB</a></li>
+            <li><a href="javascript:;">NFL</a></li>
+            <li><a href="javascript:;">搏击</a></li>
+            <li><a href="javascript:;">羽毛球</a></li>
+            <li><a href="javascript:;">跑步</a></li>
+            <li><a href="javascript:;">自行车</a></li>
+            <li><a href="javascript:;">台球</a></li>
+            <li><a href="javascript:;">极限</a></li>
+            <li><a href="javascript:;">冰雪</a></li>
+            <li><a href="javascript:;">钓鱼</a></li>
+            <li><a href="javascript:;">马术</a></li>
+            <li><a href="javascript:;">X-DRAGON驭雪挑战赛</a></li>
+            <li><a href="javascript:;">爱跑538</a></li>
+            <li><a href="javascript:;">启乐无穷</a></li>
+            <li><a href="javascript:;">Pac-12橄榄球</a></li>
+        </ul>
+    </div>
+    <div class="show1 hide">
+        <ul>
+            <li><a href="javascript:;">英雄联盟</a></li>
+            <li><a href="javascript:;">移动电竞</a></li>
+            <li><a href="javascript:;">守望先锋</a></li>
+            <li><a href="javascript:;">暴雪电竞</a></li>
+            <li><a href="javascript:;">DOTA2</a></li>
+            <li><a href="javascript:;">FIFA Online3</a></li>
+            <li><a href="javascript:;">CS:GO</a></li>
+            <li><a href="javascript:;">2016WAC</a></li>
+            <li><a href="javascript:;">棋牌</a></li>
+        </ul>
+    </div>
+    <div class="show1 hide">
+        <ul>
+            <li><a href="javascript:;">WTA</a></li>
+            <li><a href="javascript:;">ATP</a></li>
+            <li><a href="javascript:;">2016ATP年终总决赛</a></li>
+            <li><a href="javascript:;">温网</a></li>
+            <li><a href="javascript:;">美网</a></li>
+            <li><a href="javascript:;">法网</a></li>
+            <li><a href="javascript:;">上海劳力士大师赛</a></li>
+            <li><a href="javascript:;">中网</a></li>
+        </ul>
+    </div>
+    <div class="show1 hide">
+        <ul>
+            <li><a href="javascript:;">莱德杯</a></li>
+            <li><a href="javascript:;">PGA锦标赛</a></li>
+            <li><a href="javascript:;">美国公开赛</a></li>
+            <li><a href="javascript:;">美国大师赛</a></li>
+            <li><a href="javascript:;">英国公开赛</a></li>
+            <li><a href="javascript:;">欧巡赛</a></li>
+            <li><a href="javascript:;">美巡赛</a></li>
+            <li><a href="javascript:;">汇丰冠军赛</a></li>
+            <li><a href="javascript:;">观澜湖明星赛</a></li>
+        </ul>
+    </div>
+    <div class="show1 hide">
+        <ul>
+            <li><a href="javascript:;">F1</a></li>
+            <li><a href="javascript:;">WRC</a></li>
+            <li><a href="javascript:;">MotoGP</a></li>
+            <li><a href="javascript:;">WEC</a></li>
+            <li><a href="javascript:;">NASCAR</a></li>
+            <li><a href="javascript:;">CTCC</a></li>
+            <li><a href="javascript:;">乐视F1在现场</a></li>
+            <li><a href="javascript:;">中国赛车</a></li>
+        </ul>
+    </div>
+    <div class="show1 hide">
+        <ul>
+            <li><a href="javascript:;">大操场</a></li>
+            <li><a href="javascript:;">国安乐视</a></li>
+            <li><a href="javascript:;">恒大</a></li>
+            <li><a href="javascript:;">鲁能</a></li>
+            <li><a href="javascript:;">苏宁</a></li>
+            <li><a href="javascript:;">绿地申花</a></li>
+            <li><a href="javascript:;">上港</a></li>
+            <li><a href="javascript:;">华夏幸福</a></li>
+            <li><a href="javascript:;">泰达亿利</a></li>
+            <li><a href="javascript:;">建业</a></li>
+            <li><a href="javascript:;">亚泰</a></li>
+            <li><a href="javascript:;">绿城</a></li>
+            <li><a href="javascript:;">力帆</a></li>
+            <li><a href="javascript:;">永昌</a></li>
+            <li><a href="javascript:;">富力</a></li>
+            <li><a href="javascript:;">宏远</a></li>
+            <li><a href="javascript:;">延边</a></li>
+        </ul>
+    </div>
+    <div class="show1 hide">
+        <ul>
+            <li><a href="javascript:;">章鱼大爆炸</a></li>
+        </ul>
+    </div>
+    <div class="show1 hide">
+        <ul>
+            <li><a href="javascript:;">新三味聊斋</a></li>
+            <li><a href="javascript:;">冠军面对面</a></li>
+            <li><a href="javascript:;">女神欧洲杯</a></li>
+            <li><a href="javascript:;">超级星战</a></li>
+            <li><a href="javascript:;">体育+</a></li>
+            <li><a href="javascript:;">超级比赛日</a></li>
+            <li><a href="javascript:;">体育滑翔机</a></li>
+            <li><a href="javascript:;">英超精华(詹俊)</a></li>
+            <li><a href="javascript:;">足球蜜</a></li>
+            <li><a href="javascript:;">队歌</a></li>
+            <li><a href="javascript:;">足球城市处理</a></li>
+            <li><a href="javascript:;">黄腔</a></li>
+        </ul>
+    </div>
+    <span id="span"></span>
+</div>
+<div class="content">
+    <img src="./img/bg1.jpg" id="bgImg">
+    <div class="centBox">
+        <p id="contP"><a href="www.baidu.com">小威宣布与男友订婚 未婚夫为商业巨子</a></p>
+        <div class="contOne" id="contOne">
+            <a href="javascript:;" class="contA1"></a>
+            <div class="contBox">
+                <div class="centBox_1" id="centBox_1">
+                    <div class="contTwo">
+                        <p>
+                            <span>TODAY'S HEADLINES《体育+》</span>
+                            <br/>
+                            <a href="javascript:;">2016足坛最令人动容的故事 看看有没有你的偶像[详细]</a>
+                        </p>
+                        <b></b>
+                        <span>LIVE 热门直播</span>
+                        <ul>
+                            <li>
+                                <p>CBA第23轮</p>
+                                <ul>
+                                    <li class="oLi1">
+                                        <img src="./img/小牛.png" alt="">
+                                        <span>小牛</span>
+                                    </li>
+                                    <li class="oLi2">
+                            <span>
+                                 <b>VS</b>
+                            <br/>
+                                正直播
+                            </span>
+                                    </li>
+                                    <li class="oLi3">
+                                        <img src="./img/勇士.png" alt="">
+                                        <span>
+                                勇士
+                            </span>
+                                    </li>
+                                </ul>
+
+                            </li>
+                            <li class="liS1">
+                                <p>《亚洲足球周刊》第二期</p>
+                                <div>
+                                    <img src="./img/亚美足球杯.png" alt="">
+                                    <span>南美双星邂逅上海滩</span>
+                                </div>
+                            </li>
+                            <li class="liS1">
+                                <p>格斗</p>
+                                <div>
+                                    <img src="./img/格斗.png" alt="">
+                                    <span>WDF胜斗时代跨年之战<br/>正直播</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="contThree">
+                        <p class="oP1">INFORMATION 热门资讯</p>
+                        <p class="oP2">
+                            <a href="javascript:;" class="oneA">《亚洲足球周刊》南美双星邂逅上海滩</a><br/>
+                            <a href="javascript:;">《英超精华》神人轰神作</a> <a href="javascript:;">伊布领衔最佳阵容</a>
+                            <a href="javascript:;">齐达内2016:洲际三连冠</a> <a href="javascript:;">2016足坛十大转会正直播辽粤大战</a>
+                            <a href="javascript:;">赵睿pk郭少</a> <a href="javascript:;">同播京鲁战 &nbsp;&nbsp; &nbsp;</a>
+                            <a href="javascript:;">阿联将前往香港治疗</a> <a href="javascript:;">上海众将向球迷送祝福</a>
+                            <a href="javascript:;"><span>喜讯！小威宣布订婚</span></a>
+                            <a href="javascript:;#">亚森重返中国加盟北控</a><a href="javascript:;">行者一龙的不凡之路</a>
+                            <a href="javascript:;">张继科发单曲《心藏》</a>
+                        </p>
+                    </div>
+                    <ul class="oUlOne">
+                        <li>
+                            <p>体育自制</p>
+                            <div class="contFive">
+                                <a href="javascript:;">
+                                    <img src="./img/P1.jpg" alt="" class="P1">
+                                </a>
+                                <div class="contSix">
+                                    <a href="javascript:;" class="A1">
+                                        <img src="./img/P2.jpg" alt="">
+                                    </a>
+                                    <a href="javascript:;" class="A2">
+                                        <img src="./img/P3.jpg" alt="">
+                                    </a>
+                                </div>
+
+                            </div>
+                        </li>
+                        <li class="contLi2">
+                            <p>体坛缤纷</p>
+                            <div class="contFive">
+                                <a href="javascript:;">
+                                    <img src="./img/P4.jpg" alt="" class="P1">
+                                </a>
+                                <div class="contSix">
+                                    <a href="javascript:;" class="A1">
+                                        <img src="./img/P5.jpg" alt="">
+                                    </a>
+                                    <a href="#javascript:;" class="A2">
+                                        <img src="./img/P6.jpg" alt="">
+                                    </a>
+                                </div>
+
+                            </div>
+                        </li>
+                        <li>
+                            <p>活动专区</p>
+                            <div class="contFive">
+                                <a href="javascript:;">
+                                    <img src="./img/P7.jpg" alt="" class="P1">
+                                </a>
+                                <div class="contSix">
+                                    <a href="javascript:;" class="A1">
+                                        <img src="./img/P8.jpg" alt="">
+                                    </a>
+                                    <a href="javascript:;" class="A2">
+                                        <img src="./img/P9.jpg" alt="">
+                                    </a>
+                                </div>
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <a href="javascript:;" class="contA2"></a>
+            <div class="contFor">
+                <span id="oSpan"></span>
+                <a href="javascript:;"></a>
+                <i></i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="fixed">
+    <ul>
+        <li id="listAS">
+            <span href="javascript:;" class="listA1"></span>
+            <a href="javascript:;">
+                <span class="listB1"></span>
+                <b>首页</b>
+            </a>
+        </li>
+        <li>
+            <span href="javascript:;" class="listA2"></span>
+            <a href="javascript:;">
+                <span class="listB2"></span>
+                <b>中国足球</b>
+            </a>
+        </li>
+        <li>
+            <span href="javascript:;" class="listA3"></span>
+            <a href="javascript:;">
+                <span class="listB3"></span>
+                <b>国际足球</b>
+            </a>
+        </li>
+        <li>
+            <span href="javascript:;" class="listA4"></span>
+            <a href="javascript:;">
+                <span class="listB4"></span>
+                <b>篮球</b>
+            </a>
+        </li>
+        <li>
+            <span href="javascript:;" class="listA5"></span>
+            <a href="javascript:;">
+                <span class="listB5"></span>
+                <b>综合体育</b>
+            </a>
+        </li>
+        <li>
+            <span href="javascript:;" class="listA6"></span>
+            <a href="javascript:;">
+                <span class="listB6"></span>
+                <b>电竞</b>
+            </a>
+        </li>
+        <li>
+            <span href="javascript:;" class="listA7"></span>
+            <a href="javascript:;">
+                <span class="listB7"></span>
+                <b>网球</b>
+            </a>
+        </li>
+        <li>
+            <span href="javascript:;" class="listA8"></span>
+            <a href="javascript:;">
+                <span class="listB8"></span>
+                <b>高尔夫</b>
+            </a>
+        </li>
+        <li>
+            <span href="javascript:;" class="listA9"></span>
+            <a href="javascript:;">
+                <span class="listB9"></span>
+                <b>赛车</b>
+            </a>
+        </li>
+        <li>
+            <span href="javascript:;" class="listA10"></span>
+            <a href="javascript:;">
+                <span class="listB10"></span>
+                <b>户外</b>
+            </a>
+        </li>
+        <li>
+            <span href="javascript:;" class="listA11"></span>
+            <a href="javascript:;">
+                <span class="listB11"></span>
+                <b>乐视体育商城</b>
+            </a>
+        </li>
+        <li>
+            <span href="javascript:;" class="listA12"></span>
+        </li>
+    </ul>
+</div>
+<div class="fixed2" id="fixed2">
+    <span></span>
+</div>
+<div class="fixed3">
+    <ul class="fixed3_box" id="fixed3Ul">
+        <li>
+            <img src="./img/bg1.jpg" alt="">
+        </li>
+        <li>
+            <img src="./img/bg2.jpg" alt="">
+        </li>
+        <li>
+            <img src="./img/bg3.jpg" alt="">
+        </li>
+        <li>
+            <img src="./img/bg4.jpg" alt="">
+        </li>
+        <li>
+            <img src="./img/bg5.jpg" alt="">
+        </li>
+        <li>
+            <img src="./img/bg6.jpg" alt="">
+        </li>
+        <li>
+            <img src="./img/bg7.jpg" alt="">
+        </li>
+        <li>
+            <img src="./img/bg8.jpg" alt="">
+        </li>
+        <li>
+            <img src="./img/bg9.jpg" alt="">
+        </li>
+    </ul>
+
+</div>
+<script src="js/move.js"></script>
+<script src="js/utils.js"></script>
+<script>
+    var leftLitter = document.getElementById('leftLittle'),
+        centerLitter = document.getElementById('centerLittle'),
+        rightLitter = document.getElementById('rightLittle')
+    var leftLi = leftLitter.getElementsByTagName('li'),
+        centerLi = centerLitter.getElementsByTagName('li'),
+        rightLi = rightLitter.getElementsByTagName('li');
+    var moveHead = document.getElementById('moveHead');
+    var curI = moveHead.getElementsByTagName('i')[0];
+    var moveHeadWidth = moveHead.offsetWidth;
+    /*
+    * 导航栏的鼠标跟随事件
+    * */
+    function moveLogo(parent, item) {
+        for (var i = 0; i < item.length; i++) {
+            item[i].old = i;
+            item[i].onmouseenter = function () {
+                var obt = parent.offsetLeft + item[this.old].offsetLeft + 5
+                var reg = /中国足球|国际足球|综合体育|比赛大厅|重庆体育/
+                var regs = /高尔夫|章鱼TV|浙体育|粤体育/
+                var leftValue = reg.test(item[this.old].innerHTML)
+                var centerValue = regs.test(item[this.old].innerHTML)
+                if (leftValue) {
+                    //curI.style.width=27+'px'
+                    animate(curI, {width: 27}, {duration: 100})
+                } else if (centerValue) {
+                    // curI.style.width=15+'px'
+                    animate(curI, {width: 15}, {duration: 100})
+                } else {
+                    curI.style.width = '0';
+                }
+                animate(moveHead, {width: obt}, {duration: 100})
+            }
+            parent.onmouseleave = function () {
+                curI.style.width = '0';
+                moveHead.style.width = moveHeadWidth + 'px'
+            }
+        }
+    }
+    moveLogo(leftLitter, leftLi)
+    moveLogo(centerLitter, centerLi)
+
+    var leftArrow = document.getElementById('left-arrow'),
+        rightArrow = document.getElementById('right-arrow')
+    function moveUl(opt, target, interval) {
+        function Linear(t, b, c, d) {//linear公式，求出现在最新的位置；
+            return b + c / d * t;//初始位置+10分钟走了多远=新位置
+        }
+
+        opt.oldLeft = opt.offsetLeft;
+        opt.style.display = 'block';
+        var begin = opt.offsetLeft;
+        var change = target - begin;
+        var duration = 400;
+        var time = null;
+        clearInterval(timer);
+        var timer = setInterval(function () {
+            time += 10;
+            if (time >= duration) {
+                utils.css(opt, {left: target});
+                clearInterval(timer);
+                return
+            }
+            var curLeft = Linear(time, begin, change, duration)
+            utils.css(opt, {left: curLeft})
+        }, interval)
+        leftArrow.style.display = 'none';
+        rightArrow.style.display = 'block'
+    }
+    /*
+    * 点击导航箭头，向左运动
+    * */
+    leftArrow.onclick = function () {
+        moveUl(leftLitter, -500, 2)
+        moveUl(centerLitter, leftLitter.offsetLeft, 2);
+        moveUl(rightLitter, centerLitter.offsetLeft, 2);
+        leftLitter.style.display = 'none';
+        setTimeout(function () {
+            moveLogo(centerLitter, centerLi);
+            moveLogo(rightLitter, rightLi)
+        }, 300)
+    };
+    /*
+    * 点击导航箭头向右运动
+    * */
+    rightArrow.onclick = function () {
+        moveUl(leftLitter, leftLitter.oldLeft, 2);
+        moveUl(centerLitter, centerLitter.oldLeft, 2);
+        moveUl(rightLitter, -900, 2);
+        leftArrow.style.display = 'block';
+        rightArrow.style.display = 'none';
+        rightLitter.style.display = 'block';
+        setTimeout(function () {
+            moveLogo(leftLitter, leftLi);
+            moveLogo(centerLitter, centerLi);
+            moveHead.style.width = '';
+        }, 500)
+    };
+    (function addClass() {
+        var show=document.getElementsByClassName('show1');
+        var headC=document.getElementById('headCenter');
+        headC.onmouseover=function (e) {
+            e=e||window.event
+            var that=this
+            var index=e.target.getAttribute('index')
+            for(var i=0;i<show.length;i++){
+                show[i].old=i
+                if(index==i){
+                    utils.removeClass(show[i],'hide')
+                    continue;
+                }
+                utils.addClass(show[i],'hide')
+                headC.onmouseout=function () {
+                    for(var i=0;i<show.length;i++){
+                        utils.addClass(show[i],'hide')
+                    }
+                }
+            }
+        }
+    })()
+    /*
+    * 中心内容区域的左右切换
+    * */
+    function leftRightMove() {
+        var centBox_1=document.getElementById('centBox_1'),
+            contOne=document.getElementById('contOne')
+            contOne.onclick=function (e) {
+                e=e||window.event
+                var target=e.target||e.srcElement;
+                var tarTag=target.tagName.toUpperCase()
+                if(tarTag=='A'){
+                    if(target.className=='contA1'){
+                        animate(centBox_1,{left:-804},{duration:300})
+                    }else if(target.className=='contA2'){
+                        animate(centBox_1,{left:0},{duration:300})
+                    }
+                }
+            }
+    }
+    leftRightMove()
+    /*
+    * 中心内容区域的显示和隐藏
+    * */
+    function contShow_Hide() {
+        var oSpan=document.getElementById('oSpan'),
+            contOne=document.getElementById('contOne'),
+            contP=document.getElementById('contP'),
+            fixed2=document.getElementById('fixed2');
+        oSpan.onclick=function () {
+            fixed2.style.display='block';
+            function fn() {
+                animate(contOne,{width:10,height:5,left:-250,bottom:-200},{duration:100})
+            }
+            contOne.style.overflow='hidden'
+            animate(contOne,{width:10,height:5,left:-250,bottom:-200},{callback:fn,duration:200})
+            contP.className='opA'
+            animate(contP,{bottom:0},{duration:200})
+            fixed2.onclick=function () {
+                animate(contP,{bottom:278},{duration:200})
+                animate(contOne,{left:0,bottom:0,width:920,height:220},{duration:200});
+                contOne.style.overflow='visible';
+                fixed2.style.display='none';
+            }
+        };
+    }
+    contShow_Hide()
+    /*
+    * 鼠标经过底层图片时的背景轮播
+    * */
+    function bgMove() {
+        var bgImg=document.getElementById('bgImg');
+        var fixed3Ul=document.getElementById('fixed3Ul');
+        var oLi=fixed3Ul.getElementsByTagName('li');
+        var oImg=fixed3Ul.getElementsByTagName('img');
+        var obj=[]
+        for (var i=0;i<oImg.length;i++){
+            oImg[i].index=i;
+            obj.push(i);
+            oImg[i].onmouseover=function () {
+               obj.forEach(function (item) {
+                   oLi[item].className=''
+               })
+                bgImg.src=oImg[this.index].src
+                if(bgImg.src==oImg[this.index].src){
+                    oLi[this.index].className+=' hover'
+                }
+            }
+        }
+
+    }
+    bgMove()
+</script>
+</body>
+</html>
